@@ -29,6 +29,22 @@ public class ReflectUtils {
         return constructor.newInstance(params);
     }
 
+    /**
+     * 无参构造器
+     * @param className
+     * @return
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
+    public static Object createObject(String className) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class[] constructorClass = new Class[]{};
+        Object[] params = new Object[]{};
+        return createObject(className, constructorClass, params);
+    }
+
 
     /**
      * 通过反射调用实例方法
