@@ -1,12 +1,8 @@
 package reflect;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 
 public class Main {
-    private static final String TAG = "Main";
 
     public static void main(String[] args) {
 
@@ -17,9 +13,9 @@ public class Main {
 //            callPrivateMethod();
 //            callPrivateStaticsMethod();
 //            getPrivateField();
-            getPrivateStaticField();
+//            getPrivateStaticField();
             getGenerics();
-        } catch (ClassNotFoundException | InvocationTargetException | NoSuchFieldException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -27,12 +23,33 @@ public class Main {
     /**
      *
      */
-    private static void getGenerics() throws ClassNotFoundException, NoSuchFieldException {
+    private static void getGenerics() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
 
         //Singleton 为泛型类，通过以下代码获得指定的 field
         Class<?> singleton = Class.forName("reflect.Singleton");
-        Field field = singleton.getDeclaredField("mInstance");
-        field.setAccessible(true);
+        Field singletonField = singleton.getDeclaredField("mInstance");
+        singletonField.setAccessible(true);
+
+        // 获取 Singleton 的实例对象，只不过这个对象是通过另外一个类产生的
+        Class<?> activityManagerNativeClass = Class.forName("reflect.AMN");
+        Field gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
+        gDefaultField.setAccessible(true);
+        // 获取 gDefaultField 对于的静态实例变量对于的值，并把它包装后返回
+        Object gDefault = gDefaultField.get(null);
+        System.out.println("gDefault " + gDefault);
+
+        //AMN 的 gDefault 对象的 mInstance 具体值，然后包装成类。 此处 mInstance 为原始 ClassB2 对象
+        //获得 gDefault 对象的 singletonField 对应字段的值
+        Object raw2Object = singletonField.get(gDefault);
+
+        System.out.println("raw2Object " + raw2Object.toString());
+
+        Class<?> class2Interface = Class.forName("reflect.ClassB2Interface");
+        Object proxy = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
+                new Class[]{class2Interface}, new ClassB2Proxy(raw2Object));
+
+
+        singletonField.set(gDefault, proxy);
 
     }
 

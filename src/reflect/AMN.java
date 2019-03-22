@@ -1,6 +1,7 @@
 package reflect;
 
 public class AMN {
+
     private static final Singleton<ClassB2Interface> gDefault = new Singleton<ClassB2Interface>() {
         @Override
         protected ClassB2Interface create() {
@@ -11,7 +12,7 @@ public class AMN {
     };
 
     public static ClassB2Interface getDefault() {
-        return gDefault.get();
+        return gDefault.getInstance();
     }
 
 }
