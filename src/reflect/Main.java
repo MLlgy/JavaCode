@@ -15,7 +15,7 @@ public class Main {
 //            getPrivateField();
 //            getPrivateStaticField();
             getGenerics();
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -29,20 +29,24 @@ public class Main {
         Class<?> singleton = Class.forName("reflect.Singleton");
         Field singletonField = singleton.getDeclaredField("mInstance");
         singletonField.setAccessible(true);
+        System.out.println("singletonField " + singletonField.toString());
 
         // 获取 Singleton 的实例对象，只不过这个对象是通过另外一个类产生的
         Class<?> activityManagerNativeClass = Class.forName("reflect.AMN");
         Field gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
         gDefaultField.setAccessible(true);
+        System.out.println("gDefaultField" + gDefaultField.toString());
+
         // 获取 gDefaultField 对于的静态实例变量对于的值，并把它包装后返回
         Object gDefault = gDefaultField.get(null);
         System.out.println("gDefault " + gDefault);
 
         //AMN 的 gDefault 对象的 mInstance 具体值，然后包装成类。 此处 mInstance 为原始 ClassB2 对象
         //获得 gDefault 对象的 singletonField 对应字段的值
+        //在指定的对象上返回由{@code字段}表示的字段的值。Th
         Object raw2Object = singletonField.get(gDefault);
 
-        System.out.println("raw2Object " + raw2Object.toString());
+//        System.out.println("raw2Object " + raw2Object.toString());
 
         Class<?> class2Interface = Class.forName("reflect.ClassB2Interface");
         Object proxy = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
@@ -78,6 +82,7 @@ public class Main {
     private static void getPrivateField() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
         // 通过反射获得类实例
         Class clazz = Class.forName("reflect.TestClass");
+        
         Class[] classes = {String.class, int.class};
         Constructor constructor = clazz.getConstructor(classes);
         Object object = constructor.newInstance("Mike", 3);

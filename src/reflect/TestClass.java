@@ -14,6 +14,7 @@ public class TestClass {
     }
 
     private String showName(String string) {
+        System.out.println("showName " + string);
         return name + " && " + string;
     }
 
