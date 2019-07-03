@@ -13,13 +13,18 @@ public class Main {
         copyStudent.setName("幻觉");
         copyStudent.getSubject().setName("Subject Rename Copy Change");
         printMessage(student, copyStudent);
+
+
+        System.out.println("-----深拷贝-----");
+
+//        DeepCloneStudent deepStudent = new DeepCloneStudent(1,"杰克");
+//        DeepCloneStudent deepCloneStudent = (DeepCloneStudent) deepStudent.clone();
+//        printMessage(deepStudent, deepCloneStudent);
     }
 
     private static void printMessage(Student originStudent, Student copiedStudent) {
         System.out.println("student Name is:" + originStudent.getName() + " ,age is " + originStudent.getAge() + " , subject Name is " + originStudent.getSubject().getName());
         System.out.println("copyStudent Name is:" + copiedStudent.getName() + " ,age is " + copiedStudent.getAge() + " , subject Name is " + copiedStudent.getSubject().getName());
         System.out.println("================");
-
-
     }
 }
