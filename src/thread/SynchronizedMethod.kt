@@ -19,11 +19,22 @@ object Main {
     fun two() {
         val test = TestObject()
         val test2 = TestObject()
-        val threadA = ThreadA(test)
         val threadB = ThreadB(test2)
-        threadA.start()
         threadB.start()
+
+
+        var threadA: Thread? = null
+//        threadA = ThreadA(test)
+        threadA?.customFun() ?: run {
+            println("fdfjdf")
+            ThreadA(test)
+        }.customFun()
+
     }
+}
+
+fun Thread.customFun() {
+    start()
 }
 
 class ThreadA(val `object`: TestObject) : Thread("ThreadA") {
@@ -53,3 +64,5 @@ class TestObject {
         println("end")
     }
 }
+
+
