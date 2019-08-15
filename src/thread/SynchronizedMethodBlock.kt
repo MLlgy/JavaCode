@@ -52,6 +52,9 @@ object MainTwo {
         println("操作用时: ${(endTime!! - beginTime) / 1000}")
     }
 
+    /**
+     * 同步代码块
+     */
     private fun three() {
         val task = TaskThree()
         val threadAA = ThreadAA(task)
