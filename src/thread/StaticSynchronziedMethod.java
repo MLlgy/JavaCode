@@ -2,13 +2,13 @@ package thread;
 
 public class StaticSynchronziedMethod {
 
-    public void testStaticMethod() {
+    public void testMethod() {
         synchronized (StaticSynchronziedMethod.class) {
             doSomething();
         }
     }
 
-    public synchronized void testMethod() {
+    public synchronized void testStaticMethod() {
         doSomething();
     }
 

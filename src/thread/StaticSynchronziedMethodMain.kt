@@ -5,7 +5,8 @@ object StaticSynchronziedMethodMain {
     fun main(args: Array<String>) {
 //        one()
 //        two()
-        three()
+//        three()
+        four()
     }
 
 
@@ -42,6 +43,16 @@ object StaticSynchronziedMethodMain {
         threadA.start()
         threadB.start()
     }
+
+
+    private fun four() {
+        val task = StaticSynchronziedMethod()
+        val task2 = StaticSynchronziedMethod()
+        val threadA = StaticThreadC(task)
+        val threadB = StaticThreadD(task2)
+        threadA.start()
+        threadB.start()
+    }
 }
 
 
@@ -61,10 +72,19 @@ class StaticThreadB(private val task: StaticSynchronziedMethod) : Thread("B") {
     }
 }
 
-class StaticThreadC(private val task: StaticSynchronziedMethod) : Thread("B") {
+class StaticThreadC(private val task: StaticSynchronziedMethod) : Thread("C") {
+    override fun run() {
+        super.run()
+        task.testMethod()
+    }
+}
+
+class StaticThreadD(private val task: StaticSynchronziedMethod) : Thread("D") {
 
     override fun run() {
         super.run()
         task.testMethod()
     }
 }
+
+
