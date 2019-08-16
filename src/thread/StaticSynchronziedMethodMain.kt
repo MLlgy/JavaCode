@@ -6,8 +6,10 @@ object StaticSynchronziedMethodMain {
 //        one()
 //        two()
 //        three()
-        four()
+//        four()
+        five()
     }
+
 
 
     /**
@@ -45,7 +47,21 @@ object StaticSynchronziedMethodMain {
     }
 
 
+    /**
+     * 验证同一个对象 synchronize(class)代码块 间的同步性
+     */
     private fun four() {
+        val task = StaticSynchronziedMethod()
+        val threadA = StaticThreadC(task)
+        val threadB = StaticThreadD(task)
+        threadA.start()
+        threadB.start()
+    }
+
+    /**
+     * 验证多个对象 synchronize(class)代码块 间的同步性
+     */
+    private fun five() {
         val task = StaticSynchronziedMethod()
         val task2 = StaticSynchronziedMethod()
         val threadA = StaticThreadC(task)
