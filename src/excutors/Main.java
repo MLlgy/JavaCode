@@ -11,6 +11,8 @@ public class Main {
                 System.out.println("end");
             }
         };
+        System.out.println("与 runnable 同步执行 one");
         directExecutor.execute(runnable);
+        System.out.println("与 runnable 同步执行 two");
     }
 }
