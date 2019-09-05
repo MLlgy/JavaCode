@@ -22,9 +22,9 @@ class TaskBlockTestTwo : Task {
     override fun doLongTimeTask() {
 
         synchronized(this) {
-            println("A begin time is :${System.currentTimeMillis()}" )
+            println("ThreadPerTaskExecutor begin time is :${System.currentTimeMillis()}" )
             Thread.sleep(2000)
-            println("A end time is :${System.currentTimeMillis()}")
+            println("ThreadPerTaskExecutor end time is :${System.currentTimeMillis()}")
         }
     }
 

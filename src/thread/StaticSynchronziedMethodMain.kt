@@ -72,7 +72,7 @@ object StaticSynchronziedMethodMain {
 }
 
 
-class StaticThreadA(private val task: StaticSynchronziedMethod) : Thread("A") {
+class StaticThreadA(private val task: StaticSynchronziedMethod) : Thread("ThreadPerTaskExecutor") {
 
     override fun run() {
         super.run()

@@ -1,4 +1,4 @@
-package socket;
+package httpurlconnection;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;

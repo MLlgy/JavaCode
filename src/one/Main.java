@@ -8,8 +8,8 @@ public class Main {
 //       chinese.setAge(0);
 //       System.out.println(mGroup.getChinese().getAge());
 
-//        A a;
-//        a = new A();
+//        ThreadPerTaskExecutor a;
+//        a = new ThreadPerTaskExecutor();
 ////        a.testMethod();
 //        a = new B();
 ////        a.testMethod();
