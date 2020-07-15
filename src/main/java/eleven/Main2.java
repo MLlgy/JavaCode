@@ -7,9 +7,9 @@ public class Main2 {
     public static void main(String[] args) {
 
 //        test1();
-//        test2();
+        test2();
 //        test3();
-        test4();
+//        test4();
     }
 
     private static void test4() {
@@ -48,9 +48,9 @@ public class Main2 {
         treeSet.add(new ClassD(1));
         treeSet.add(new ClassD(-1));
         treeSet.add(new ClassD(0));
-        ClassD classD = new ClassD(2);
-        treeSet.add(classD);
-        treeSet.add(classD);
+//        ClassD classD = new ClassD(2);
+//        treeSet.add(classD);
+//        treeSet.add(classD);
         System.out.println(treeSet);
     }
 

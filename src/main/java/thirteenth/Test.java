@@ -22,7 +22,7 @@ public class Test {
         int a = 6;
         while (listIterator.hasNext()) {
             ClassE classE = (ClassE) listIterator.next();
-            if (classE.getNum() == 3) {
+            if (classE.getNum() == 2) {
                 listIterator.add(new ClassE(6));
             }
             System.out.println("listIterator " + classE.toString());
